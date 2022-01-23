@@ -27,12 +27,8 @@ public class EmployeeController {
     public List<Employee> getAllEmployee(){
         return employeeRepository.findAll();
     }
-    @RequestMapping("/addEmployee")
-    public ResponseEntity<?> addEmployee(HttpServletRequest request){
-        String firstName=request.getParameter("firstName");
-        String lastName=request.getParameter("lastName");;
-        String emailId=request.getParameter("emailId");;
-        Employee employee=new Employee(firstName,lastName,emailId);
+    @PostMapping ("/employees")
+    public ResponseEntity<?> addEmployee(@RequestBody Employee employee){
         employeeRepository.save(employee);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
